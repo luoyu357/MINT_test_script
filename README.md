@@ -1,1 +1,0 @@
-# MINT_test_script

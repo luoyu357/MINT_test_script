@@ -151,3 +151,40 @@ The MIC resource: https://mic-cli.readthedocs.io/en/latest/installation/
       }
   }INFO Final process status is success
   ```
+  * or you can run and test another sample (files can be found in github: https://github.com/luoyu357/simpleModel)
+  ```
+  $ cwltool simpleModelAnnotated.cwl simpleModelAnnotatedValues.yml
+  ```
+* Step 4: Upload the image to your DockerHub
+  * make the docker image public
+  ```
+  (base) luoyu@MacBook-Pro-452 test % mic notebook upload-image Martin\'s_workflow.cwl 
+  Image r2d-2fvar-2ffolders-2fc-5f-2fgjpmq4v121x-5f1-5fxfkqjfvdn00000gn-2ft-2frepo2cwl-5f2yb4udlv-2frepo1696980739 detected
+  Docker username detected: luoyu357
+  The push refers to repository [docker.io/luoyu357/r2d-2fvar-2ffolders-2fc-5f-2fgjpmq4v121x-5f1-5fxfkqjfvdn00000gn-2ft-2frepo2cwl-5f2yb4udlv-2frepo1696980739]
+  Docker Image has been updated  luoyu357/r2d-2fvar-2ffolders-2fc-5f-2fgjpmq4v121x-5f1-5fxfkqjfvdn00000gn-2ft-2frepo2cwl-5f2yb4udlv-2frepo1696980739:20231011-151315 in the CWL specification
+  ```
+* Step 5: Publish the ```cwl``` and image to the Model Catalog
+  * push the docker image with parameters to the server
+  ```
+  (base) luoyu@MacBook-Pro-452 test % mic notebook upload-component Martin\'s_workflow.cwl workflow.yml
+  /Users/luoyu/Desktop/MINIT WITH ICICE/model/test/Martin's_workflow_mic.yaml created
+  Added: output_file as a output
+  Added: batch_size as a parameter
+  Added: classes as a parameter
+  Added: epochs as a parameter
+  ERROR:root:Exception when calling DefaultApi->user_login_get: (404)
+  Reason: Not Found
+  HTTP response headers: HTTPHeaderDict({'Date': 'Wed, 11 Oct 2023 19:17:29 GMT', 'Content-Type': 'application/json', 'Content-Length': '22', 'Connection': 'keep-alive', 'Strict-Transport-Security': 'max-age=15724800; includeSubDomains', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true', 'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS', 'Access-Control-Allow-Headers': 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization', 'Access-Control-Max-Age': '1728000'})
+  HTTP response body: {"detail":"Not Found"}
+  ```
+  * issues: the API port is not open. The MINT team uses the MIC web and cannot find this issue 
+---
+## MIC Web
+
+* Requirement:
+  * MINT account
+
+* UI: https://mic.indiana.mint.isi.edu
+* tutorial: https://www.youtube.com/watch?v=JmeHIbTlT_Y 
+* Potential issues: the accounts that we have may have some limitations to publish models
